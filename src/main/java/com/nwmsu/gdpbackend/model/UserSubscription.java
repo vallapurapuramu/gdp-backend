@@ -14,7 +14,9 @@ public class UserSubscription {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_id")
  private int userCompanyId;
-
+public UserSubscription() {
+	
+}
 public UserSubscription(int userCompanyId) {
 	super();
 	this.userCompanyId = userCompanyId;
