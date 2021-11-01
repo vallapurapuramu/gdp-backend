@@ -10,15 +10,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "events")
 public class Event {
+
+	public Event() {
+
+	}
+
+	public Event(long id, String eventName, String eventDescription, String eventType) {
+		super();
+		this.id = id;
+		this.EventName = eventName;
+		this.EventDescription = eventDescription;
+		this.EventType = eventType;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "event_id")
 	private long id;
-
-	@Column
+	@Column(name = "eventname")
 	private String EventName;
-	@Column
+	@Column(name = "eventdescription")
 	private String EventDescription;
-	@Column
+	@Column(name = "eventtype")
 	private String EventType;
 
 	public long getId() {
