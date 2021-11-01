@@ -4,10 +4,10 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.nwmsu.gdpbackend.service.CompanyService;
+import com.nwmsu.gdpbackend.service.NewApplicationService;
 
 @Service
 @Transactional
-public class CompanyServicelmpl implements CompanyService {
+public class NewApplicationServiceImpl implements NewApplicationService {
 
 }
