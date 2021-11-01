@@ -10,24 +10,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usersubscription")
 public class UserSubscription {
+	public UserSubscription() {
+
+	}
+
+	public UserSubscription(int id) {
+		super();
+		this.id = id;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "company_id")
- private int userCompanyId;
-public UserSubscription() {
-	
-}
-public UserSubscription(int userCompanyId) {
-	super();
-	this.userCompanyId = userCompanyId;
-}
+	@Column(name = "subscription_id")
+	private int id;
 
-public int getUserCompanyId() {
-	return userCompanyId;
-}
+	public int getId() {
+		return id;
+	}
 
-public void setUserCompanyId(int userCompanyId) {
-	this.userCompanyId = userCompanyId;
-}
- 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 }
