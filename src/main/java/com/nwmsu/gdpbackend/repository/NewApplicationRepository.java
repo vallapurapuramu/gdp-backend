@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import antlr.debug.Event;
 
 @Repository
-public interface NewApplication extends JpaRepository<Event, Integer> {
+public interface NewApplicationRepository extends JpaRepository<Event, Integer> {
 
 }
