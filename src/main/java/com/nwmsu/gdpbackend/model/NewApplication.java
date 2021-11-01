@@ -1,52 +1,48 @@
 package com.nwmsu.gdpbackend.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "new_application")
 public class NewApplication {
-  
+
+	public NewApplication() {
+
+	}
+
+	public NewApplication(int id, String applicationdetails) {
+		super();
+		this.id = id;
+		this.applicationdetails = applicationdetails;
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String eventUserId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "application_id")
+	private int id;
 
-	@Column
-	private String Event_Id;
+	@Column(name = "application_details")
+	private String applicationdetails;
 
-	@Column
-	private String User_Id;
-	
-	
-
-	@Override
-	public String toString() {
-		return "NewApplication [eventUserId=" + eventUserId + ", Event_Id=" + Event_Id + ", User_Id=" + User_Id + "]";
+	public int getId() {
+		return id;
 	}
 
-	public String getEventUserId() {
-		return eventUserId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	public void setEventUserId(String eventUserId) {
-		this.eventUserId = eventUserId;
+	public String getApplicationdetails() {
+		return applicationdetails;
 	}
 
-	public String getEvent_Id() {
-		return Event_Id;
+	public void setApplicationdetails(String applicationdetails) {
+		this.applicationdetails = applicationdetails;
 	}
 
-	public void setEvent_Id(String event_Id) {
-		Event_Id = event_Id;
-	}
-
-	public String getUser_Id() {
-		return User_Id;
-	}
-
-	public void setUser_Id(String user_Id) {
-		User_Id = user_Id;
-	}
-	
-	
 }

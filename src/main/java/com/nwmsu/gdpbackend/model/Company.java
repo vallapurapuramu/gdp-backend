@@ -7,32 +7,66 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.NaturalId;
-
-
-
 @Entity
-@Table(name = "COMPANY")
+@Table(name = "company")
 public class Company {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Company_Id;
 
-	@Column
+	public Company() {
+
+	}
+
+	public Company(int id, String company_Name, String address, int telephone_Number) {
+		super();
+		this.id = id;
+		Company_Name = company_Name;
+		Address = address;
+		Telephone_Number = telephone_Number;
+	}
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "company_id")
+	private int id;
+
+	@Column(name = "company_name")
 	private String Company_Name;
 
-	@Column
+	@Column(name = "address")
 	private String Address;
 
-	@NaturalId
-	@Column
+	@Column(name = "mobileno")
 	private int Telephone_Number;
 
-	@Column
-	private String createdAt;
-     
-	@Column
-	private String updatedAt;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCompany_Name() {
+		return Company_Name;
+	}
+
+	public void setCompany_Name(String company_Name) {
+		Company_Name = company_Name;
+	}
+
+	public String getAddress() {
+		return Address;
+	}
+
+	public void setAddress(String address) {
+		Address = address;
+	}
+
+	public int getTelephone_Number() {
+		return Telephone_Number;
+	}
+
+	public void setTelephone_Number(int telephone_Number) {
+		Telephone_Number = telephone_Number;
+	}
 
 }
