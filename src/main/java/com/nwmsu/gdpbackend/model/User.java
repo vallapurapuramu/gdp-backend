@@ -13,21 +13,36 @@ import org.hibernate.annotations.NaturalId;
 @Table(name = "users")
 public class User {
 
+	public User() {
+
+	}
+
+	public User(int id, String firstname, String lastname, String email, String role, String password) {
+		super();
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.email = email;
+		this.role = role;
+		this.password = password;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private int id;
 
-	@Column
+	@Column(name = "first_name")
 	private String firstname;
 
-	@Column
+	@Column(name = "last_name")
 	private String lastname;
 
 	@NaturalId
-	@Column
+	@Column(name = "email")
 	private String email;
 
-	@Column
+	@Column(name = "role")
 	private String role;
 
 	public int getId() {
