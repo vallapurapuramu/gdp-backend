@@ -11,4 +11,6 @@ public interface EventService {
 
 	void addNewEvent(@NotNull Event event);
 
+	Event getEventById(long id);
+
 }

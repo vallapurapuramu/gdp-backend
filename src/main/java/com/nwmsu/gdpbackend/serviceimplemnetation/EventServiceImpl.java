@@ -30,4 +30,9 @@ public class EventServiceImpl implements EventService {
 
 	}
 
+	@Override
+	public Event getEventById(long id) {
+		return eventRepository.findById(id).get();
+	}
+
 }

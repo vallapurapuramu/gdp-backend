@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,13 +33,24 @@ public class EventController {
 		}
 	}
 
-	@GetMapping("/events")
+	@GetMapping("/eventslist")
 	public ResponseEntity<List<Event>> getAllEvents() {
 		List<Event> events = eventService.getAllEvents();
 		if (!events.isEmpty()) {
 			return new ResponseEntity<List<Event>>(events, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<List<Event>>(events, HttpStatus.NOT_FOUND);
+		}
+
+	}
+	
+	@GetMapping("/event/{id}")
+	public ResponseEntity<Event> getEventById(@PathVariable long id) {
+		Event event = eventService.getEventById(id);
+		if (event != null) {
+			return new ResponseEntity<Event>(event, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Event>(event, HttpStatus.NOT_FOUND);
 		}
 
 	}
