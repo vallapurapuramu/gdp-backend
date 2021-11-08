@@ -11,62 +11,85 @@ import javax.persistence.Table;
 @Table(name = "company")
 public class Company {
 
-	public Company() {
-
-	}
-
-	public Company(int id, String company_Name, String address, int telephone_Number) {
+	public Company(int company_id, String companyname, String address, long mobilenumber, User user,
+			List<Event> events) {
 		super();
-		this.id = id;
-		Company_Name = company_Name;
-		Address = address;
-		Telephone_Number = telephone_Number;
+		this.company_id = company_id;
+		this.companyname = companyname;
+		this.address = address;
+		this.mobilenumber = mobilenumber;
+		this.user = user;
+		this.events = events;
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "company_id")
-	private int id;
+	private int company_id;
 
 	@Column(name = "company_name")
-	private String Company_Name;
+	private String companyname;
 
 	@Column(name = "address")
-	private String Address;
+	private String address;
 
-	@Column(name = "mobileno")
-	private int Telephone_Number;
+	@Column(name = "mobile_number")
+	private long mobilenumber;
 
-	public int getId() {
-		return id;
+	@OneToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@OneToMany(mappedBy = "company", cascade = { CascadeType.ALL })
+	@JsonManagedReference
+	private List<Event> events;
+
+	public int getCompany_id() {
+		return company_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setCompany_id(int company_id) {
+		this.company_id = company_id;
 	}
 
-	public String getCompany_Name() {
-		return Company_Name;
+	public String getCompanyname() {
+		return companyname;
 	}
 
-	public void setCompany_Name(String company_Name) {
-		Company_Name = company_Name;
+	public void setCompanyname(String companyname) {
+		this.companyname = companyname;
 	}
 
 	public String getAddress() {
-		return Address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		Address = address;
+		this.address = address;
 	}
 
-	public int getTelephone_Number() {
-		return Telephone_Number;
+	public long getMobilenumber() {
+		return mobilenumber;
 	}
 
-	public void setTelephone_Number(int telephone_Number) {
-		Telephone_Number = telephone_Number;
+	public void setMobilenumber(long mobilenumber) {
+		this.mobilenumber = mobilenumber;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
 	}
 
 }
