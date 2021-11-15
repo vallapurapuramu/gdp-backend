@@ -37,11 +37,8 @@ public class LoginController {
 
 		try {
 			User user = service.checkUser(userRequest.getEmail());
-			System.out.println(userRequest.getPassword());
 			byte[] decodedBytes = Base64.getDecoder().decode(user.getPassword());
-
 			String decodedString = new String(decodedBytes);
-
 			if (user != null && (userRequest.getPassword().equalsIgnoreCase(decodedString)))
 				return new ResponseEntity<User>(user, HttpStatus.OK);
 			else {
@@ -56,9 +53,7 @@ public class LoginController {
 	public ResponseEntity<HttpStatus> Register(@RequestBody User user) {
 		System.out.println(user);
 		try {
-
 			user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
-			System.out.println("Check this" + user.getPassword());
 			user.setRole("admin");
 			service.postUser(user);
 			return new ResponseEntity<>(HttpStatus.OK);

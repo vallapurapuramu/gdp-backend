@@ -1,5 +1,6 @@
 package com.nwmsu.gdpbackend.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,14 +19,54 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 @Entity
 @Table(name = "events")
 public class Event {
-	public Event(long id, String eventname, String eventdescription, String eventtype, Company company,
-			List<User> users_id) {
+
+	public Event() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Event(long id, String eventname, String eventdescription, String eventtype, String location, Date eventdate,
+			Company company, List<User> users_id) {
 		super();
 		this.id = id;
 		this.eventname = eventname;
 		this.eventdescription = eventdescription;
 		this.eventtype = eventtype;
+		this.location = location;
+		this.eventdate = eventdate;
 		this.company = company;
+		this.users_id = users_id;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Date getEventdate() {
+		return eventdate;
+	}
+
+	public void setEventdate(Date eventdate) {
+		this.eventdate = eventdate;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public List<User> getUsers_id() {
+		return users_id;
+	}
+
+	public void setUsers_id(List<User> users_id) {
 		this.users_id = users_id;
 	}
 
@@ -39,7 +80,10 @@ public class Event {
 	private String eventdescription;
 	@Column(name = "event_type")
 	private String eventtype;
-
+	@Column(name = "location")
+	private String location;
+	@Column(name = "eventdate")
+	private Date eventdate;
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JsonBackReference
 	@JoinColumn(name = "company_id", nullable = false)

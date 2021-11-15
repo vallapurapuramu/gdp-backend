@@ -19,6 +19,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name = "company")
 public class Company {
 
+	public Company() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Company(int company_id, String companyname, String address, long mobilenumber, User user,
 			List<Event> events) {
 		super();
