@@ -54,7 +54,7 @@ public class LoginController {
 		System.out.println(user);
 		try {
 			user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
-			user.setRole("admin");
+//			user.setRole("admin");
 			service.postUser(user);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (NoSuchElementException e) {

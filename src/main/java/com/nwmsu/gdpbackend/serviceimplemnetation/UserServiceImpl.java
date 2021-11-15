@@ -1,5 +1,7 @@
 package com.nwmsu.gdpbackend.serviceimplemnetation;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +16,21 @@ import com.nwmsu.gdpbackend.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	UserRepository repository;
+	UserRepository userRepository;
 
 	@Override
 	public User checkUser(String email) {
-
-		return repository.findByEmail(email);
+		return userRepository.findByEmail(email);
 	}
 
 	@Override
 	public void postUser(User user) {
-		repository.save(user);
-
+		userRepository.save(user);
 	}
 
+	@Override
+	public List<User> getCompnayMemList() {
+		String s = "companymember";
+		return userRepository.findByRole(s);
+	}
 }
