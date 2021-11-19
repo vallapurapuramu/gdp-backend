@@ -1,11 +1,11 @@
 package com.nwmsu.gdpbackend.controller;
 
-import java.util.Base64;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,10 +36,14 @@ public class LoginController {
 	public ResponseEntity<User> loginVerification(@RequestBody UserRequest userRequest) {
 
 		try {
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			User user = service.checkUser(userRequest.getEmail());
-			byte[] decodedBytes = Base64.getDecoder().decode(user.getPassword());
-			String decodedString = new String(decodedBytes);
-			if (user != null && (userRequest.getPassword().equalsIgnoreCase(decodedString)))
+//			byte[] decodedBytes = Base64.getDecoder().decode(user.getPassword());
+//			String decodedString = new String(decodedBytes);
+
+			boolean isPasswordMatch = passwordEncoder.matches(userRequest.getPassword(), user.getPassword());
+
+			if (user != null && isPasswordMatch)
 				return new ResponseEntity<User>(user, HttpStatus.OK);
 			else {
 				return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
@@ -53,8 +57,10 @@ public class LoginController {
 	public ResponseEntity<HttpStatus> Register(@RequestBody User user) {
 		System.out.println(user);
 		try {
-			user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
-//			user.setRole("admin");
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//			user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
+////			user.setRole("admin");
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			service.postUser(user);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (NoSuchElementException e) {
