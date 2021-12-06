@@ -1,5 +1,7 @@
 package com.nwmsu.gdpbackend.serviceimplemnetation;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +22,13 @@ public class CompanyServicelmpl implements CompanyService {
 	public void addCompany(Company company) {
 		companyRepository.save(company);
 	}
+
+	@Override
+	public List<Company> getCompanyList() {
+		// TODO Auto-generated method stub
+		return companyRepository.findAll();
+	}
+
+	
 
 }

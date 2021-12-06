@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nwmsu.gdpbackend.model.Company;
 import com.nwmsu.gdpbackend.model.User;
 import com.nwmsu.gdpbackend.service.CompanyService;
 import com.nwmsu.gdpbackend.service.UserService;
@@ -32,4 +33,15 @@ public class CompanyController {
 		}
 
 	}
+
+@GetMapping("/companyList")
+public ResponseEntity<List<Company>> getCompnayList() {
+	List<Company> compnaies = companyService.getCompanyList();
+	if (!compnaies.isEmpty()) {
+		return new ResponseEntity<List<Company>>(compnaies, HttpStatus.OK);
+	} else {
+		return new ResponseEntity<List<Company>>(compnaies, HttpStatus.NOT_FOUND);
+	}
+
+}
 }

@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nwmsu.gdpbackend.model.Company;
 import com.nwmsu.gdpbackend.model.Event;
-import com.nwmsu.gdpbackend.service.CompanyService;
 import com.nwmsu.gdpbackend.service.EventService;
 import com.sun.istack.NotNull;
 
@@ -25,8 +23,6 @@ import com.sun.istack.NotNull;
 public class EventController {
 	@Autowired
 	EventService eventService;
-	@Autowired
-	CompanyService companyService;
 
 	@PostMapping("/add/event")
 	public ResponseEntity<HttpStatus> addNewEvent(@NotNull @RequestBody Event event) {
@@ -70,11 +66,5 @@ public class EventController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-	}
-	
-	@PostMapping("/add/company")
-	public ResponseEntity<HttpStatus> addCompany(@RequestBody Company company) {
-		companyService.addCompany(company);
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
