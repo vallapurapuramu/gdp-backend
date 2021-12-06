@@ -12,4 +12,8 @@ public interface UserService {
 
 	List<User> getCompnayMemList();
 
+	void deleteCompanyMemberById(int id);
+
+	User getUserById(int id);
+
 }

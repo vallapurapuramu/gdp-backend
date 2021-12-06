@@ -33,4 +33,15 @@ public class UserServiceImpl implements UserService {
 		String s = "companymember";
 		return userRepository.findByRole(s);
 	}
+
+	@Override
+	public void deleteCompanyMemberById(int id) {
+		userRepository.deleteById(id);
+	}
+
+	@Override
+	public User getUserById(int id) {
+		// TODO Auto-generated method stub
+		return userRepository.getById(id);
+	}
 }

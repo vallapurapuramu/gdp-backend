@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +22,7 @@ import com.nwmsu.gdpbackend.service.UserService;
 @CrossOrigin(origins = "*")
 public class LoginController {
 	@Autowired
-	UserService service;
+	UserService userservice;
 
 	@GetMapping("/")
 	public ResponseEntity<String> basic() {
@@ -37,7 +39,7 @@ public class LoginController {
 
 		try {
 			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-			User user = service.checkUser(userRequest.getEmail());
+			User user = userservice.checkUser(userRequest.getEmail());
 //			byte[] decodedBytes = Base64.getDecoder().decode(user.getPassword());
 //			String decodedString = new String(decodedBytes);
 
@@ -61,11 +63,23 @@ public class LoginController {
 //			user.setPassword(Base64.getEncoder().encodeToString(user.getPassword().getBytes()));
 ////			user.setRole("admin");
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			service.postUser(user);
+			userservice.postUser(user);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@DeleteMapping("/deleteCompanyMember/{id}")
+	public ResponseEntity<HttpStatus> deleteCompanyMemberById(@PathVariable int id) {
+		userservice.deleteCompanyMemberById(id);
+		User e = userservice.getUserById(id);
+		if (e == null) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 }
