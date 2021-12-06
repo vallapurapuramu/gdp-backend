@@ -12,5 +12,7 @@ public interface CompanyService {
 
     List<Company> getCompanyList();
     Company getCompanyById(int id);
+
+	void deleteCompanyById(int id);
 	
 }

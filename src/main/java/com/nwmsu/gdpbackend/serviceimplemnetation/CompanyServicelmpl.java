@@ -33,6 +33,13 @@ public class CompanyServicelmpl implements CompanyService {
 		// TODO Auto-generated method stub
 		return companyRepository.findById(id).get();
 	}
+
+	@Override
+	public void deleteCompanyById(int id) {
+		// TODO Auto-generated method stub
+		companyRepository.deleteById(id);
+		
+	}
 	
 
 }
