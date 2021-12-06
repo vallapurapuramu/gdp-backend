@@ -11,5 +11,6 @@ public interface CompanyService {
 	void addCompany(Company company);
 
     List<Company> getCompanyList();
+    Company getCompanyById(int id);
 	
 }

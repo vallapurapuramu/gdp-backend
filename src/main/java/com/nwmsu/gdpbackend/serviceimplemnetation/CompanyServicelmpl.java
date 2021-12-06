@@ -28,7 +28,11 @@ public class CompanyServicelmpl implements CompanyService {
 		// TODO Auto-generated method stub
 		return companyRepository.findAll();
 	}
-
+	@Override
+	public Company getCompanyById(int id) {
+		// TODO Auto-generated method stub
+		return companyRepository.findById(id).get();
+	}
 	
 
 }
