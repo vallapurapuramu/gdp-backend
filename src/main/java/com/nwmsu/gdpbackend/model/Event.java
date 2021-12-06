@@ -89,7 +89,7 @@ public class Event {
 	@JoinColumn(name = "company_id", nullable = false)
 	private Company company;
 
-	@ManyToMany(mappedBy = "enrolled_events", cascade = { CascadeType.ALL })
+	@ManyToMany(mappedBy = "enrolled_events", cascade = { CascadeType.PERSIST })
 	List<User> users_id;
 
 	public long getId() {

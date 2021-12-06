@@ -49,11 +49,11 @@ public class Company {
 	@Column(name = "mobile_number")
 	private long mobilenumber;
 
-	@OneToOne(cascade = { CascadeType.ALL })
+	@OneToOne(cascade = { CascadeType.PERSIST })
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "company", cascade = { CascadeType.ALL })
+	@OneToMany(mappedBy = "company", cascade = { CascadeType.PERSIST })
 	@JsonManagedReference
 	private List<Event> events;
 

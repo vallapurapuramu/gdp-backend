@@ -50,7 +50,7 @@ public class User {
 	@Column
 	private String password;
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany(cascade = { CascadeType.PERSIST })
 	@JoinTable(name = "enrolled_events", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "event_id"))
 	List<Event> enrolled_events;
 
